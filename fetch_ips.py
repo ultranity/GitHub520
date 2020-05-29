@@ -53,8 +53,6 @@ def write_readme(hosts_content: str):
             output_fb.write(hosts_content)
 
 def write_hosts(hosts_content: str):
-    update_time = datetime.utcnow().astimezone(
-        timezone(timedelta(hours=8))).replace(microsecond=0).isoformat()
     output_file_path = os.path.join(os.path.dirname(__file__), "hosts")
     with open(output_file_path, "r") as old_hosts_fb:
         old_hosts = old_hosts_fb.read()
@@ -63,7 +61,6 @@ def write_hosts(hosts_content: str):
             return
     
     with open(output_file_path, "w") as output_fb:
-        output_fb.write("# update_time: {}".format(update_time))
         output_fb.write(hosts_content)
 
 def make_ipaddress_url(raw_url: str):
@@ -99,7 +96,7 @@ def get_ip(session: requests.session, raw_url: str):
 
 
 def main():
-    hosts_template = """# GitHub520 Host Start\n{content}# GitHub520 Host End"""
+    hosts_template = """# GitHub520 Host Start\n#update_time: {update_time}\n{content}# GitHub520 Host End"""
     session = requests.session()
     content = ""
     for raw_url in RAW_URL:
@@ -110,7 +107,9 @@ def main():
             continue
 
     if content:
-        hosts_content = hosts_template.format(content=content)
+        update_time = datetime.utcnow().astimezone(
+        timezone(timedelta(hours=8))).replace(microsecond=0).isoformat()
+        hosts_content = hosts_template.format(content=content,update_time=update_time)
         print(hosts_content)
         write_readme(hosts_content)
         write_hosts(hosts_content)
