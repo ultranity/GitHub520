@@ -32,7 +32,7 @@ RAW_URL = [
 IPADDRESS_PREFIX = ".ipaddress.com"
 
 
-def write_file(hosts_content: str):
+def write_readme(hosts_content: str):
     update_time = datetime.utcnow().astimezone(
         timezone(timedelta(hours=8))).replace(microsecond=0).isoformat()
     output_file_path = os.path.join(os.path.dirname(__file__), "README.md")
@@ -52,6 +52,19 @@ def write_file(hosts_content: str):
         with open(output_file_path, "w") as output_fb:
             output_fb.write(hosts_content)
 
+def write_hosts(hosts_content: str):
+    update_time = datetime.utcnow().astimezone(
+        timezone(timedelta(hours=8))).replace(microsecond=0).isoformat()
+    output_file_path = os.path.join(os.path.dirname(__file__), "hosts")
+    with open(output_file_path, "r") as old_hosts_fb:
+        old_hosts = old_hosts_fb.read()
+        if old_hosts == hosts_content:
+            print("host not change")
+            return
+    
+    with open(output_file_path, "w") as output_fb:
+        output_fb.write("# update_time: {}".format(update_time))
+        output_fb.write(hosts_content)
 
 def make_ipaddress_url(raw_url: str):
     """
@@ -99,7 +112,8 @@ def main():
     if content:
         hosts_content = hosts_template.format(content=content)
         print(hosts_content)
-        write_file(hosts_content)
+        write_readme(hosts_content)
+        write_hosts(hosts_content)
 
 
 if __name__ == '__main__':
