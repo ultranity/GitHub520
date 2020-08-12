@@ -22,7 +22,7 @@
 ### 2.1 复制下面的内容
 ```bash
 # GitHub520 Host Start
-#update_time: 2020-08-13T02:11:20+08:00
+#update_time: 2020-08-13T04:11:47+08:00
 185.199.108.154                                   github.githubassets.com
 199.232.68.133                                    camo.githubusercontent.com
 199.232.68.133                                    github.map.fastly.net
@@ -30,7 +30,7 @@
 140.82.113.3                                      github.com
 140.82.113.6                                      api.github.com
 199.232.68.133                                    raw.githubusercontent.com
-40.84.25.86                                       favicons.githubusercontent.com
+52.176.102.33                                     favicons.githubusercontent.com
 199.232.68.133                                    avatars5.githubusercontent.com
 199.232.68.133                                    avatars4.githubusercontent.com
 199.232.68.133                                    avatars3.githubusercontent.com
@@ -40,7 +40,7 @@
 # GitHub520 Host End
 ```
 
-上面内容会自动定时更新，保证最新有效。数据更新时间：2020-08-13T02:11:20+08:00（内容无变动不会更新）
+上面内容会自动定时更新，保证最新有效。数据更新时间：2020-08-13T04:11:47+08:00（内容无变动不会更新）
 
 ### 2.2 修改 hosts 文件
 hosts 文件在每个系统的位置不一，详情如下：
